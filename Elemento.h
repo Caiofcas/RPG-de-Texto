@@ -1,37 +1,40 @@
-#include <stdio.h>
-#include <string.h>
 #include "TabelaSim.h"
 
 typedef union u{
-	TabSim atributos;
-	Lista saudas;
-}det;
+	Lista atributos;
+	Lista saidas;
+} det;
 
 typedef struct elemento {
-	char *nome, *longa, *curta;
+	char *nome, *longa, *curta; // Descricoes do elemento
 
-	//0-DefDir,1-DefInd,2-IndefDir,3-IndefInd 
-	char **artigos;
+	char **artigos; /* Artigos referente ao nome do elemento
+					   0 - Definido direto
+					   1 - Definido indireto
+					   2 - Indefinido direto
+					   3 - Indefinido indireto
+					   Usamos apenas o 0 e 2 nesta fase...*/
 	
-	short int ativo, visivel, conhecido;
+	short int ativo, visivel, conhecido; /* Numeros que indicam se o
+											elemento ja esta acessivel no jogo*/
 	
-	Lista conteudo;
+	Lista conteudo; // Lista de conteudos dentro do elemento
 	
-	Lista acoes;
+	Lista acoes; // Lista de funcoes executaveis para este elemento
 	
 	int(*animacao)(struct elemento*, struct elemento*);
 	
-	det detalhe;
+	det detalhe; //Atributo ou Saidas
 	
 	int tipo; // 0-objeto 1-lugar
+
 }Elemento;
 
-//typedef int(*func)(*struct elemento, *struct elemento) FPTR;
+typedef int (*func)(Elemento*, Elemento*);
 
-Elemento* CriaElemento(char* nome, char* curta, char* longa, 
-					   int(*animacao)(Elemento*, Elemento*),
-					   int tipo, Lista acoes, det detalhe);
-
-void ImprimeElCompleta(void*e);
+Elemento* CriaElemento(char* nome, char* curta, char* longa, func animacao, 
+					   int tipo, Lista acoes, det detalhe, char ** artigos);
 
 int ComparaElementos(void* a, void*b);
+
+void ImprimeElCompleta(void* e);

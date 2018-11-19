@@ -15,11 +15,11 @@ TabSim CriaTabela(int tam){
     return Tabela;
 }
 
-int InsereTabSim(TabSim t, char *n, void *val, size_t tam_tipo)
+int InsereTabSim(TabSim t, char *n, void *val)
 {
     int h = n[0];
 
-    t.indices[h] = InsereLista(t.indices[h],val,tam_tipo);
+    t.indices[h] = InsereLista(t.indices[h],val);
 
     return t.indices[h] == NULL;
 }

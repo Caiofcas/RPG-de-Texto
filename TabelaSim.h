@@ -7,7 +7,7 @@ typedef struct tabela{
 
 TabSim CriaTabela(int tam);
 
-int InsereTabSim(TabSim t, char *n, void *val, size_t tam_tipo);
+int InsereTabSim(TabSim t, char *n, void *val);
 
 void *BuscaTabSim(TabSim t, char *n, int(*fcomp)(void*,void*) );
 

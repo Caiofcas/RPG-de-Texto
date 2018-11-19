@@ -4,7 +4,7 @@ CFLAGS = -Wall
 DPL = Lista.h Lista.c
 DPTS = TabelaSim.h TabelaSim.c Lista.o
 DPEl = Elemento.h Elemento.c Lista.o TabelaSim.o
-DPF = Elemento.o Funcoes.o
+DPF = Elemento.o
 
 DPTestL = testeLista.o Lista.o
 DPTestTS = testeTabSim.o TabelaSim.o
